@@ -1,0 +1,1715 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: How it works, key: -5f2415c3'
+            label: Text
+            name: '-5f2415c3'
+            widget: string
+          - hint: 'Original text: Meals, key: 46c74f0'
+            label: Text
+            name: 46c74f0
+            widget: string
+          - hint: 'Original text: Testemonials, key: 760c1058'
+            label: Text
+            name: 760c1058
+            widget: string
+          - hint: 'Original text: Pricing, key: 507137a6'
+            label: Text
+            name: 507137a6
+            widget: string
+          - hint: 'Original text: Try for free, key: -1492bbb8'
+            label: Text
+            name: '-1492bbb8'
+            widget: string
+          - hint: >-
+              Original text: A healthy meal delivered to your door, every single
+              day, key: -71794f16
+            label: Text
+            name: '-71794f16'
+            widget: string
+          - hint: >-
+              Original text: The smart 365-days-per-year food subscription that
+              will make you eat healthy again. Tailored to your personal tastes
+              and nutritional needs., key: 7c6d21a9
+            label: Text
+            name: 7c6d21a9
+            widget: text
+          - hint: 'Original text: Start eating well, key: -73428d3a'
+            label: Text
+            name: '-73428d3a'
+            widget: string
+          - hint: 'Original text: Learn more, key: -52aefc2f'
+            label: Text
+            name: '-52aefc2f'
+            widget: string
+          - hint: 'Original text: 250,000+, key: -6defc406'
+            label: Text
+            name: '-6defc406'
+            widget: string
+          - hint: 'Original text:  meals delivered last year!, key: 5e2ac7c6'
+            label: Text
+            name: 5e2ac7c6
+            widget: string
+          - hint: 'Original text: as featured in, key: -6657f897'
+            label: Text
+            name: '-6657f897'
+            widget: string
+          - hint: 'Original text: how it works, key: -68ef69e3'
+            label: Text
+            name: '-68ef69e3'
+            widget: string
+          - hint: >-
+              Original text: Your daily dose of health in 3 simple steps, key:
+              -42690c29
+            label: Text
+            name: '-42690c29'
+            widget: string
+          - hint: 'Original text: 01, key: 601'
+            label: Text
+            name: '601'
+            widget: string
+          - hint: 'Original text: Tell us what you like (and what not), key: 601d820'
+            label: Text
+            name: 601d820
+            widget: string
+          - hint: >-
+              Original text: Never again waste time thinking about what to eat!
+              Omnifood AI will create a 100% personalized weekly meal plan just
+              for you. It makes sure you get all the nutrients and vitamins you
+              need, no matter what diet you fallow!, key: 540e41a7
+            label: Text
+            name: 540e41a7
+            widget: text
+          - hint: 'Original text: 02, key: 602'
+            label: Text
+            name: '602'
+            widget: string
+          - hint: 'Original text: Approve your weekly meal plan, key: 75cabc21'
+            label: Text
+            name: 75cabc21
+            widget: string
+          - hint: >-
+              Original text: Once pre week, approve the meal plan generated for
+              you by Omnifood AI. You can change ingredients, swap entire meals.
+              or even add your own recepies., key: 649a2579
+            label: Text
+            name: 649a2579
+            widget: text
+          - hint: 'Original text: 03, key: 603'
+            label: Text
+            name: '603'
+            widget: string
+          - hint: 'Original text: Receive meals at convinient time, key: -374e2d0e'
+            label: Text
+            name: '-374e2d0e'
+            widget: string
+          - hint: >-
+              Original text: Best chefs in town will cook your selected meal
+              every day, and we will deliver it to your door whenever works best
+              for you. You can change delivery schedule and address daily!, key:
+              737f2f9c
+            label: Text
+            name: 737f2f9c
+            widget: text
+          - hint: >-
+              Original text: Omnifood AI chooses from 5000+ recipes, key:
+              5258d652
+            label: Text
+            name: 5258d652
+            widget: string
+          - hint: 'Original text: VEGETERIAN, key: -5416df5e'
+            label: Text
+            name: '-5416df5e'
+            widget: string
+          - hint: 'Original text: Japanese Gyozas, key: -1f477d62'
+            label: Text
+            name: '-1f477d62'
+            widget: string
+          - hint: 'Original text: 650, key: d151'
+            label: Text
+            name: d151
+            widget: string
+          - hint: 'Original text:  calories, key: 7e7bab26'
+            label: Text
+            name: 7e7bab26
+            widget: string
+          - hint: 'Original text: NutriScore ® , key: 276cc804'
+            label: Text
+            name: 276cc804
+            widget: string
+          - hint: 'Original text: 74, key: 6dd'
+            label: Text
+            name: 6dd
+            widget: string
+          - hint: 'Original text: 4.9, key: c8ff'
+            label: Text
+            name: c8ff
+            widget: string
+          - hint: 'Original text:  rating (537), key: 4dc7b5f5'
+            label: Text
+            name: 4dc7b5f5
+            widget: string
+          - hint: 'Original text: VEGAN, key: 4dc55a5'
+            label: Text
+            name: 4dc55a5
+            widget: string
+          - hint: 'Original text: PALEO, key: 4860a65'
+            label: Text
+            name: 4860a65
+            widget: string
+          - hint: 'Original text: Avocado Salad, key: fc8d524'
+            label: Text
+            name: fc8d524
+            widget: string
+          - hint: 'Original text: 400, key: c934'
+            label: Text
+            name: c934
+            widget: string
+          - hint: 'Original text: 92, key: 719'
+            label: Text
+            name: '719'
+            widget: string
+          - hint: 'Original text: 4.8, key: c8fe'
+            label: Text
+            name: c8fe
+            widget: string
+          - hint: 'Original text:  rating (441), key: 4dc7449d'
+            label: Text
+            name: 4dc7449d
+            widget: string
+          - hint: 'Original text: Works with any diet:, key: 1705a136'
+            label: Text
+            name: 1705a136
+            widget: string
+          - hint: 'Original text: Vegetarian, key: 598b2be'
+            label: Text
+            name: 598b2be
+            widget: string
+          - hint: 'Original text: Vegan, key: 4eb5da5'
+            label: Text
+            name: 4eb5da5
+            widget: string
+          - hint: 'Original text: Pascatarian, key: -4b27230f'
+            label: Text
+            name: '-4b27230f'
+            widget: string
+          - hint: 'Original text: Gluten-free, key: -3312f5d4'
+            label: Text
+            name: '-3312f5d4'
+            widget: string
+          - hint: 'Original text: Lactose-free, key: -281f5f82'
+            label: Text
+            name: '-281f5f82'
+            widget: string
+          - hint: 'Original text: Keto, key: 23a175'
+            label: Text
+            name: 23a175
+            widget: string
+          - hint: 'Original text: Paleo, key: 4951265'
+            label: Text
+            name: '4951265'
+            widget: string
+          - hint: 'Original text: Low FODMAP, key: 31d9892d'
+            label: Text
+            name: 31d9892d
+            widget: string
+          - hint: 'Original text: Kid-friendly, key: 7abe5ff2'
+            label: Text
+            name: 7abe5ff2
+            widget: string
+          - hint: 'Original text: See All Recipes, key: 5858bc79'
+            label: Text
+            name: 5858bc79
+            widget: string
+          - hint: 'Original text: testemonials, key: 6c40bc38'
+            label: Text
+            name: 6c40bc38
+            widget: string
+          - hint: 'Original text: Once you try it, you can''t go back, key: 21a4a217'
+            label: Text
+            name: 21a4a217
+            widget: string
+          - hint: >-
+              Original text: Inexpensive, healthy and great-tasting meals,
+              without even having to order manually! It feels truly magical.,
+              key: -385a5890
+            label: Text
+            name: '-385a5890'
+            widget: text
+          - hint: 'Original text: — Dave Bryson, key: 7d1cfb71'
+            label: Text
+            name: 7d1cfb71
+            widget: string
+          - hint: >-
+              Original text: The AI algorithm is crazy good, it chooses the
+              right meals for me every time. It's amazing not to worry about
+              food anymore!, key: -5f1bc9d1
+            label: Text
+            name: '-5f1bc9d1'
+            widget: text
+          - hint: 'Original text: — Ben Hadley, key: -5b024b4a'
+            label: Text
+            name: '-5b024b4a'
+            widget: string
+          - hint: >-
+              Original text: Omnifood is a life saver! I just started a company,
+              so there's no time for cooking. I couldn't live without my daily
+              meals now!, key: 7ebddd9a
+            label: Text
+            name: 7ebddd9a
+            widget: text
+          - hint: 'Original text: — Steve Miller, key: -5b847e'
+            label: Text
+            name: '-5b847e'
+            widget: string
+          - hint: >-
+              Original text: I got Omnifood for the whole family, and it frees
+              up so much time! Plus, everything is organic and vegan and without
+              plastic., key: -59601c81
+            label: Text
+            name: '-59601c81'
+            widget: text
+          - hint: 'Original text: — Hannah Smith, key: -7a491931'
+            label: Text
+            name: '-7a491931'
+            widget: string
+          - hint: 'Original text: pricing, key: -12c7603a'
+            label: Text
+            name: '-12c7603a'
+            widget: string
+          - hint: >-
+              Original text: Eating well without breaking the bank, key:
+              -77f6fb6c
+            label: Text
+            name: '-77f6fb6c'
+            widget: string
+          - hint: 'Original text: Heading, key: -6d5fea1e'
+            label: Text
+            name: '-6d5fea1e'
+            widget: string
+          - hint: 'Original text: $, key: 24'
+            label: Text
+            name: '24'
+            widget: string
+          - hint: 'Original text: 399, key: c693'
+            label: Text
+            name: c693
+            widget: string
+          - hint: >-
+              Original text: per month. That's just $13 per meal!, key:
+              -4c0bbbd5
+            label: Text
+            name: '-4c0bbbd5'
+            widget: string
+          - hint: 'Original text: 1 meal per day, key: f48e4b'
+            label: Text
+            name: f48e4b
+            widget: string
+          - hint: 'Original text: Order from 11am to 9pm, key: -3876879f'
+            label: Text
+            name: '-3876879f'
+            widget: string
+          - hint: 'Original text: Delivery is free, key: 178c6b96'
+            label: Text
+            name: 178c6b96
+            widget: string
+          - hint: 'Original text: complete, key: -23bacec7'
+            label: Text
+            name: '-23bacec7'
+            widget: string
+          - hint: 'Original text: 649, key: d13b'
+            label: Text
+            name: d13b
+            widget: string
+          - hint: >-
+              Original text: per month. That's just $11 per meal!, key:
+              -75d52157
+            label: Text
+            name: '-75d52157'
+            widget: string
+          - hint: 'Original text: 2 meals, key: -6e3df45e'
+            label: Text
+            name: '-6e3df45e'
+            widget: string
+          - hint: 'Original text:  per day, key: -2c707a07'
+            label: Text
+            name: '-2c707a07'
+            widget: string
+          - hint: 'Original text: Order , key: -72bbb14e'
+            label: Text
+            name: '-72bbb14e'
+            widget: string
+          - hint: 'Original text: 24/7, key: 1783aa'
+            label: Text
+            name: 1783aa
+            widget: string
+          - hint: 'Original text: Get access to latest recipes, key: -69fa00c1'
+            label: Text
+            name: '-69fa00c1'
+            widget: string
+          - hint: >-
+              Original text: Prices include all applicable taxes. You can cancel
+              at any time. Both plans include the following:, key: d46f123
+            label: Text
+            name: d46f123
+            widget: text
+          - hint: 'Original text: Never cook again!, key: -3c470b1b'
+            label: Text
+            name: '-3c470b1b'
+            widget: string
+          - hint: >-
+              Original text: Our subscriptions cover 365 days per year, even
+              including major holidays., key: -5f9c50ad
+            label: Text
+            name: '-5f9c50ad'
+            widget: string
+          - hint: 'Original text: Local and organic, key: -53a74fb3'
+            label: Text
+            name: '-53a74fb3'
+            widget: string
+          - hint: >-
+              Original text: Our cooks only use local, fresh, and organic
+              products to prepare your meals., key: 37965464
+            label: Text
+            name: '37965464'
+            widget: string
+          - hint: 'Original text: No waste, key: -2c3acbe5'
+            label: Text
+            name: '-2c3acbe5'
+            widget: string
+          - hint: >-
+              Original text: All our partners only use reusable containers to
+              package all your meals., key: 4ed0ba51
+            label: Text
+            name: 4ed0ba51
+            widget: string
+          - hint: 'Original text: Pause anytime, key: -7a446d91'
+            label: Text
+            name: '-7a446d91'
+            widget: string
+          - hint: >-
+              Original text: Going on vacation? Just pause your subscription,
+              and we refund unused days., key: 269864c5
+            label: Text
+            name: 269864c5
+            widget: string
+          - hint: 'Original text: Get your first meal for free!, key: 1c7badd4'
+            label: Text
+            name: 1c7badd4
+            widget: string
+          - hint: >-
+              Original text: Healthy, tasty and hassle-free meals are waiting
+              for you. Start eating well today. You can cancel or pause anytime.
+              And the first meal is on us!, key: 66948346
+            label: Text
+            name: '66948346'
+            widget: text
+          - hint: 'Original text: Full Name, key: ff41d7c'
+            label: Text
+            name: ff41d7c
+            widget: string
+          - hint: 'Original text: Email Address, key: -2b7010d0'
+            label: Text
+            name: '-2b7010d0'
+            widget: string
+          - hint: 'Original text: Where did you here for us?, key: -420fed0b'
+            label: Text
+            name: '-420fed0b'
+            widget: string
+          - hint: 'Original text: Please chose one option:, key: -4cb5018f'
+            label: Text
+            name: '-4cb5018f'
+            widget: string
+          - hint: 'Original text: Friends and family, key: 175d4558'
+            label: Text
+            name: 175d4558
+            widget: string
+          - hint: 'Original text: YouTube, key: 280d3723'
+            label: Text
+            name: 280d3723
+            widget: string
+          - hint: 'Original text: Podcast, key: 4b0c1ae4'
+            label: Text
+            name: 4b0c1ae4
+            widget: string
+          - hint: 'Original text: Others, key: -729db07d'
+            label: Text
+            name: '-729db07d'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Contact us, key: 7f274abe'
+            label: Text
+            name: 7f274abe
+            widget: string
+          - hint: >-
+              Original text: 623 Harrison St., 2nd Floor, San Francisco, CA
+              94107, key: 17b24d73
+            label: Text
+            name: 17b24d73
+            widget: string
+          - hint: 'Original text: 415-201-6370hello@omnifood.com, key: -794e5883'
+            label: Text
+            name: '-794e5883'
+            widget: string
+          - hint: 'Original text: Account, key: 1d0c220d'
+            label: Text
+            name: 1d0c220d
+            widget: string
+          - hint: 'Original text: Create account, key: -529d28d7'
+            label: Text
+            name: '-529d28d7'
+            widget: string
+          - hint: 'Original text: Sign in, key: -204ff5b8'
+            label: Text
+            name: '-204ff5b8'
+            widget: string
+          - hint: 'Original text: iOS app, key: 3ddecb8e'
+            label: Text
+            name: 3ddecb8e
+            widget: string
+          - hint: 'Original text: Android app, key: -64cceb30'
+            label: Text
+            name: '-64cceb30'
+            widget: string
+          - hint: 'Original text: Company, key: -64202ba3'
+            label: Text
+            name: '-64202ba3'
+            widget: string
+          - hint: 'Original text: About Omnifood, key: -65f4f096'
+            label: Text
+            name: '-65f4f096'
+            widget: string
+          - hint: 'Original text: For Business, key: -4581e289'
+            label: Text
+            name: '-4581e289'
+            widget: string
+          - hint: 'Original text: Cooking partners, key: -25a6f56f'
+            label: Text
+            name: '-25a6f56f'
+            widget: string
+          - hint: 'Original text: Careers, key: -7bc27f6b'
+            label: Text
+            name: '-7bc27f6b'
+            widget: string
+          - hint: 'Original text: Resources, key: 13ede05'
+            label: Text
+            name: 13ede05
+            widget: string
+          - hint: 'Original text: Recipe directory, key: 4c8dc27b'
+            label: Text
+            name: 4c8dc27b
+            widget: string
+          - hint: 'Original text: Help center, key: -73d76e0c'
+            label: Text
+            name: '-73d76e0c'
+            widget: string
+          - hint: 'Original text: Privacy & terms, key: 13db9855'
+            label: Text
+            name: 13db9855
+            widget: string
+          - hint: >-
+              Original text: Copyright © 2022 by Omnifood,inc. All rights
+              reserved., key: -6fe16112
+            label: Text
+            name: '-6fe16112'
+            widget: string
+          - hint: 'Original text: Protected Page, key: -11d4bbff'
+            label: Text
+            name: '-11d4bbff'
+            widget: string
+          - hint: >-
+              Original text: Incorrect password. Please try again., key:
+              -f5c4b5f
+            label: Text
+            name: '-f5c4b5f'
+            widget: string
+          - hint: 'Original text: Page Not Found, key: -40b0787c'
+            label: Text
+            name: '-40b0787c'
+            widget: string
+          - hint: >-
+              Original text: The page you are looking for doesn't exist or has
+              been moved, key: 556d64d8
+            label: Text
+            name: 556d64d8
+            widget: string
+          - hint: 'Original text: Go Home, key: 6b29b517'
+            label: Text
+            name: 6b29b517
+            widget: string
+          - hint: 'Original text: Style Guide, key: -7aba473'
+            label: Text
+            name: '-7aba473'
+            widget: string
+          - hint: 'Original text: Client-First Version 1.0, key: 507fb359'
+            label: Text
+            name: 507fb359
+            widget: string
+          - hint: 'Original text: HTML Heading Tags, key: 391be0c'
+            label: Text
+            name: 391be0c
+            widget: string
+          - hint: 'Original text: H1, key: 8e9'
+            label: Text
+            name: '8e9'
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder., key:
+              1108a7df
+            label: Text
+            name: 1108a7df
+            widget: string
+          - hint: 'Original text: H2, key: 8ea'
+            label: Text
+            name: 8ea
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder as real
+              text., key: -6c11f3e4
+            label: Text
+            name: '-6c11f3e4'
+            widget: string
+          - hint: 'Original text: H3, key: 8eb'
+            label: Text
+            name: 8eb
+            widget: string
+          - hint: >-
+              Original text: Sample text helps you understand how real text may
+              look on your website., key: 785897ae
+            label: Text
+            name: 785897ae
+            widget: string
+          - hint: 'Original text: H4, key: 8ec'
+            label: Text
+            name: 8ec
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder for real
+              text that is normally present. Sample text helps you understand
+              how real text may look., key: -5fcdceac
+            label: Text
+            name: '-5fcdceac'
+            widget: text
+          - hint: 'Original text: H5, key: 8ed'
+            label: Text
+            name: 8ed
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder for real
+              text that is normally present. Sample text helps you understand
+              how real text may look on your website. Sample text is being used
+              as a placeholder for real text., key: ff56e0c
+            label: Text
+            name: ff56e0c
+            widget: text
+          - hint: 'Original text: H6, key: 8ee'
+            label: Text
+            name: 8ee
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder for real
+              text that is normally present. Sample text helps you understand
+              how real text may look on your website. Sample text is being used
+              as a placeholder for real text that is normally present., key:
+              667d63e4
+            label: Text
+            name: 667d63e4
+            widget: text
+          - hint: 'Original text: Heading Classes, key: 6647fc8'
+            label: Text
+            name: 6647fc8
+            widget: string
+          - hint: 'Original text: heading-xlarge, key: -3e113412'
+            label: Text
+            name: '-3e113412'
+            widget: string
+          - hint: 'Original text: heading-large, key: -2bf8bc50'
+            label: Text
+            name: '-2bf8bc50'
+            widget: string
+          - hint: 'Original text: heading-medium, key: -5137ea60'
+            label: Text
+            name: '-5137ea60'
+            widget: string
+          - hint: 'Original text: heading-small, key: -2b90e284'
+            label: Text
+            name: '-2b90e284'
+            widget: string
+          - hint: 'Original text: heading-xsmall, key: -3da95a46'
+            label: Text
+            name: '-3da95a46'
+            widget: string
+          - hint: 'Original text: Other HTML Tags, key: e88725e'
+            label: Text
+            name: e88725e
+            widget: string
+          - hint: 'Original text: All Paragraphs, key: 5cba4ce4'
+            label: Text
+            name: 5cba4ce4
+            widget: string
+          - hint: 'Original text: All Links, key: 47b903a'
+            label: Text
+            name: 47b903a
+            widget: string
+          - hint: 'Original text: All Quotes, key: -6bd79eea'
+            label: Text
+            name: '-6bd79eea'
+            widget: string
+          - hint: 'Original text: Text Classes, key: -77cc77cd'
+            label: Text
+            name: '-77cc77cd'
+            widget: string
+          - hint: 'Original text: text-size-large , key: -4527a10f'
+            label: Text
+            name: '-4527a10f'
+            widget: string
+          - hint: 'Original text: text-size-medium, key: -4340bddf'
+            label: Text
+            name: '-4340bddf'
+            widget: string
+          - hint: 'Original text: text-size-regular, key: -1c283d90'
+            label: Text
+            name: '-1c283d90'
+            widget: string
+          - hint: 'Original text: text-size-small, key: -75702325'
+            label: Text
+            name: '-75702325'
+            widget: string
+          - hint: 'Original text: text-size-tiny, key: -6f243f54'
+            label: Text
+            name: '-6f243f54'
+            widget: string
+          - hint: 'Original text: text-style-strikethrough, key: -613aa0e9'
+            label: Text
+            name: '-613aa0e9'
+            widget: string
+          - hint: 'Original text: text-style-italic, key: -1e09a194'
+            label: Text
+            name: '-1e09a194'
+            widget: string
+          - hint: 'Original text: text-style-muted, key: -5b95aa51'
+            label: Text
+            name: '-5b95aa51'
+            widget: string
+          - hint: 'Original text: text-style-allcaps, key: -576c60ba'
+            label: Text
+            name: '-576c60ba'
+            widget: string
+          - hint: 'Original text: text-style-nowrap, key: -15bdc639'
+            label: Text
+            name: '-15bdc639'
+            widget: string
+          - hint: 'Original text: text-style-link, key: 4f9fb336'
+            label: Text
+            name: 4f9fb336
+            widget: string
+          - hint: 'Original text: text-style-quote, key: -5b5d5d40'
+            label: Text
+            name: '-5b5d5d40'
+            widget: string
+          - hint: 'Original text: text-style-2lines, key: -7c513db7'
+            label: Text
+            name: '-7c513db7'
+            widget: string
+          - hint: 'Original text: text-style-3lines, key: -7a9c6518'
+            label: Text
+            name: '-7a9c6518'
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder for real
+              text that is normally present. Sample text helps you understand
+              how real text may look on your website. Sample text is being used
+              as a placeholder for real text.dolor sit amet,, key: -18a479d9
+            label: Text
+            name: '-18a479d9'
+            widget: text
+          - hint: 'Original text: Text Weights, key: -6156a2f8'
+            label: Text
+            name: '-6156a2f8'
+            widget: string
+          - hint: 'Original text: text-weight-xbold, key: -6542b3f8'
+            label: Text
+            name: '-6542b3f8'
+            widget: string
+          - hint: 'Original text: text-weight-bold, key: 704ee01a'
+            label: Text
+            name: 704ee01a
+            widget: string
+          - hint: 'Original text: text-weight-semibold, key: -399389f8'
+            label: Text
+            name: '-399389f8'
+            widget: string
+          - hint: 'Original text: text-weight-medium, key: -55b3dc36'
+            label: Text
+            name: '-55b3dc36'
+            widget: string
+          - hint: 'Original text: text-weight-normal, key: -536baec4'
+            label: Text
+            name: '-536baec4'
+            widget: string
+          - hint: 'Original text: text-weight-light, key: -65e8bddf'
+            label: Text
+            name: '-65e8bddf'
+            widget: string
+          - hint: 'Original text: Text Alignments, key: -4799cc3d'
+            label: Text
+            name: '-4799cc3d'
+            widget: string
+          - hint: 'Original text: text-align-left, key: 91bde6f'
+            label: Text
+            name: 91bde6f
+            widget: string
+          - hint: 'Original text: text-align-center, key: 224610bd'
+            label: Text
+            name: 224610bd
+            widget: string
+          - hint: 'Original text: text-align-right, key: 1ab650b4'
+            label: Text
+            name: 1ab650b4
+            widget: string
+          - hint: 'Original text: Text Colors, key: -1c74483d'
+            label: Text
+            name: '-1c74483d'
+            widget: string
+          - hint: 'Original text: text-color-grey, key: -6bdd4457'
+            label: Text
+            name: '-6bdd4457'
+            widget: string
+          - hint: 'Original text: text-color-black, key: -1014878b'
+            label: Text
+            name: '-1014878b'
+            widget: string
+          - hint: 'Original text: Rich Text, key: 41b289f1'
+            label: Text
+            name: 41b289f1
+            widget: string
+          - hint: 'Original text: Heading 1, key: 6af22973'
+            label: Text
+            name: 6af22973
+            widget: string
+          - hint: 'Original text: Heading 2, key: 6af22974'
+            label: Text
+            name: 6af22974
+            widget: string
+          - hint: 'Original text: Heading 3, key: 6af22975'
+            label: Text
+            name: 6af22975
+            widget: string
+          - hint: 'Original text: Heading 4, key: 6af22976'
+            label: Text
+            name: 6af22976
+            widget: string
+          - hint: 'Original text: Heading 5, key: 6af22977'
+            label: Text
+            name: 6af22977
+            widget: string
+          - hint: 'Original text: Heading 6, key: 6af22978'
+            label: Text
+            name: 6af22978
+            widget: string
+          - hint: >-
+              Original text: The rich text element allows you to create and
+              format headings,, key: 730b2c2f
+            label: Text
+            name: 730b2c2f
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: 'Original text: This is a link, key: 5443dd2d'
+            label: Text
+            name: 5443dd2d
+            widget: string
+          - hint: 'Original text: This is a placeholder image., key: -395a7a8d'
+            label: Text
+            name: '-395a7a8d'
+            widget: string
+          - hint: 'Original text: Color Palette, key: -4b21e982'
+            label: Text
+            name: '-4b21e982'
+            widget: string
+          - hint: 'Original text: Primary, key: 5075a5e2'
+            label: Text
+            name: 5075a5e2
+            widget: string
+          - hint: 'Original text: Secondary, key: 46b69154'
+            label: Text
+            name: 46b69154
+            widget: string
+          - hint: 'Original text: Text Color, key: -7487e150'
+            label: Text
+            name: '-7487e150'
+            widget: string
+          - hint: 'Original text: Background1, key: -3a24075d'
+            label: Text
+            name: '-3a24075d'
+            widget: string
+          - hint: 'Original text: Background2, key: -3a24075c'
+            label: Text
+            name: '-3a24075c'
+            widget: string
+          - hint: 'Original text: Buttons, key: 719b5761'
+            label: Text
+            name: 719b5761
+            widget: string
+          - hint: 'Original text: button, key: -521dd8ce'
+            label: Text
+            name: '-521dd8ce'
+            widget: string
+          - hint: 'Original text: button-secondary, key: -188a5b67'
+            label: Text
+            name: '-188a5b67'
+            widget: string
+          - hint: 'Original text: button-text, key: -6b9f1118'
+            label: Text
+            name: '-6b9f1118'
+            widget: string
+          - hint: 'Original text: Backgrounds, key: -3a24071b'
+            label: Text
+            name: '-3a24071b'
+            widget: string
+          - hint: 'Original text: Icons Sizes, key: -2729fc34'
+            label: Text
+            name: '-2729fc34'
+            widget: string
+          - hint: 'Original text: Icons 1x1 Sizes, key: -7484862a'
+            label: Text
+            name: '-7484862a'
+            widget: string
+          - hint: 'Original text: Social Media Icons, key: -143b2875'
+            label: Text
+            name: '-143b2875'
+            widget: string
+          - hint: 'Original text: Webflow Elements, key: -7c9906eb'
+            label: Text
+            name: '-7c9906eb'
+            widget: string
+          - hint: 'Original text: List, key: 2424be'
+            label: Text
+            name: 2424be
+            widget: string
+          - hint: >-
+              Original text: Sample text is being used as a placeholder for real
+              text that is normally present., key: -6aeb2b17
+            label: Text
+            name: '-6aeb2b17'
+            widget: string
+          - hint: 'Original text: Form, key: 2180e4'
+            label: Text
+            name: '2180e4'
+            widget: string
+          - hint: 'Original text: Text Input, key: -7433b8e9'
+            label: Text
+            name: '-7433b8e9'
+            widget: string
+          - hint: 'Original text: Text Area, key: 360b43a0'
+            label: Text
+            name: 360b43a0
+            widget: string
+          - hint: 'Original text: Select field, key: 2b9f90f6'
+            label: Text
+            name: 2b9f90f6
+            widget: string
+          - hint: 'Original text: Select one..., key: 57f3b1cc'
+            label: Text
+            name: 57f3b1cc
+            widget: string
+          - hint: 'Original text: First Choice, key: -491b32af'
+            label: Text
+            name: '-491b32af'
+            widget: string
+          - hint: 'Original text: Second Choice, key: 3c4172cd'
+            label: Text
+            name: 3c4172cd
+            widget: string
+          - hint: 'Original text: Third Choice, key: -1b351146'
+            label: Text
+            name: '-1b351146'
+            widget: string
+          - hint: 'Original text: Checkbox field, key: -70558183'
+            label: Text
+            name: '-70558183'
+            widget: string
+          - hint: 'Original text: Checkbox, key: 5f757fe3'
+            label: Text
+            name: 5f757fe3
+            widget: string
+          - hint: 'Original text: Radio button, key: 739c6f17'
+            label: Text
+            name: 739c6f17
+            widget: string
+          - hint: 'Original text: Radio, key: 4b123db'
+            label: Text
+            name: 4b123db
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: https://client-first.webflow.io/, key: -740f2794'
+            label: Link
+            name: '-740f2794'
+            widget: string
+          - hint: 'Original link: http://youtube.com, key: 499802e4'
+            label: Link
+            name: '499802e4'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: idb7aae9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1ebe2c5e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-38b8d9ca'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b3c508f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b4a6810
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b587f91
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b74ae93
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b669712
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6b82c614
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7780d7e8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-21b53342'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '7275e646'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4e708d84'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-59dc3fa8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-45b1d16f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-45a3b9ee'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4595a26d'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5cbe01b4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5ccc1935
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-34dd4f07'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2325f95c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-646f9794'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 523bdaed
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1633788f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '16419010'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 164fa791
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 165dbf12
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 166bd693
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1679ee14
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '16880595'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 16961d16
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 16a43497
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4fc392f9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4fb57b78'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4fa763f7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 37e39ad3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 23a73adb
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1b70054c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-76324587'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4abef31c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2b1beb3c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2d7f87f1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 317f733b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
